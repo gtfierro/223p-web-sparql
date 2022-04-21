@@ -15,7 +15,7 @@ if __name__ == "__main__":
     for f in args.input:
         graph.parse(f, format=rdflib.util.guess_format(f))
 
-    env.import_dependencies(graph, recursive_limit=1)
+    env.import_dependencies(graph, recursive_limit=2)
     # valid, _, report = pyshacl.validate(graph, advanced=True, js=True, allow_warnings=True)
     # if not valid:
     #     print(report)
