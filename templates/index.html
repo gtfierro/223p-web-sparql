@@ -25,9 +25,13 @@
                 </p>
 		<p>
         <!-- TODO: autogenerate this -->
-        {% for model_name, model_file in models.items() %}
-            <button @click="handleURL('{{ model_file }}', true)">{{ model_name }}</button>
-        {% endfor %}
+            <h4>223P Building Model Examples</h4>
+
+            <ul class="example-models">
+            {% for model_name, model_file in models.items() %}
+                <li><a href="javascript: void(0);" @click="handleURL('{{ model_file }}', true)">{{ model_name }}</a></li>
+            {% endfor %}
+            </ul>
 		</p>
             </div>
             <div class="col2">

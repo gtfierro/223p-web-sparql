@@ -324,7 +324,7 @@ app.component("iri-link", {
             return this.$root.getURIValue(this.iri);
         },
         is_iri: function() {
-            return this.iri.startsWith("http");
+            return this.iri.startsWith("http") || this.iri.startsWith("urn");
         },
     },
     template: `
