@@ -1,0 +1,1444 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+s223:Class a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Class" ;
+    rdfs:subClassOf rdfs:Class .
+
+s223:AHU a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "AHU" ;
+    rdfs:subClassOf s223:System .
+
+s223:Actuator a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Actuator" ;
+    rdfs:subClassOf s223:Device ;
+    sh:property [ sh:class s223:ActuatableProperty ;
+            sh:path s223:actuatesProperty ] .
+
+s223:BidirectionalConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Bidirectional Connection Point" ;
+    rdfs:comment "A BidirectionalConnectionPoint is a predefined subclass of ConnectionPoint for which the hasDirection property has the value Bidirectional. The use of a BidirectionalConnectionPoint implies that the direction of flow is not fixed in one direction. It depends on the status of some other part of the system, such as a valve position, that is expected to change during operation." ;
+    rdfs:subClassOf s223:ConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:hasValue s223:Direction-Bidirectional ;
+            sh:path s223:hasDirection ] .
+
+s223:BidirectionalSystemConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Bidirectional System Connection Point" ;
+    rdfs:comment "This class is analogous to the BidirectionalConnectionPoint class, but for SystemConnectionPoints." ;
+    rdfs:subClassOf s223:SystemConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:hasValue s223:Direction-Bidirectional ;
+            sh:path s223:hasDirection ] .
+
+s223:BidirectionalZoneConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Bidirectional Zone Connection Point" ;
+    rdfs:comment "This class is analogous to the BidirectionalConnectionPoint class, but for ZoneConnectionPoints." ;
+    rdfs:subClassOf s223:ZoneConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:hasValue s223:Direction-Bidirectional ;
+            sh:path s223:hasDirection ] .
+
+s223:Chiller a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Chiller" ;
+    rdfs:subClassOf s223:Device .
+
+s223:ConcentrationSensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Concentration sensor" ;
+    rdfs:subClassOf s223:Sensor .
+
+s223:CoolingCoil a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Cooling coil" ;
+    rdfs:subClassOf s223:Coil .
+
+s223:DifferentialPressureSensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Differential pressure sensor" ;
+    rdfs:subClassOf s223:DifferentialSensor .
+
+s223:DischargeContext a s223:Class ;
+    rdfs:label "Discharge Context" ;
+    rdfs:subClassOf s223:Context .
+
+s223:Domain-ConveyanceSystems a s223:EnumerationKind-Domain ;
+    rdfs:label "Domain-ConveyanceSystems" .
+
+s223:Domain-Electrical a s223:EnumerationKind-Domain ;
+    rdfs:label "Domain-Electrical" .
+
+s223:Domain-Fire a s223:EnumerationKind-Domain ;
+    rdfs:label "Domain-Fire" .
+
+s223:Domain-HVAC a s223:EnumerationKind-Domain ;
+    rdfs:label "Domain-HVAC" .
+
+s223:Domain-Lighting a s223:EnumerationKind-Domain ;
+    rdfs:label "Domain-Lighting" .
+
+s223:Domain-Networking a s223:EnumerationKind-Domain ;
+    rdfs:label "Domain-Networking" .
+
+s223:Domain-Occupancy a s223:EnumerationKind-Domain ;
+    rdfs:label "Domain-Occupancy" .
+
+s223:Domain-Physical a s223:EnumerationKind-Domain ;
+    rdfs:label "Domain-Physical" .
+
+s223:Domain-Plumbing a s223:EnumerationKind-Domain ;
+    rdfs:label "Domain-Plumbing" .
+
+s223:Domain-Refrigeration a s223:EnumerationKind-Domain ;
+    rdfs:label "Domain-Refrigeration" .
+
+s223:Domain-Security a s223:EnumerationKind-Domain ;
+    rdfs:label "Domain-Security" .
+
+s223:Duct a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Duct" ;
+    rdfs:comment "A predefined subClassOf Connection typically used to convey air in a building." ;
+    rdfs:subClassOf s223:Connection .
+
+s223:Economizer a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Economizer" ;
+    rdfs:subClassOf s223:Device .
+
+s223:Effectiveness-Active a s223:EnumerationKind-Effectiveness ;
+    rdfs:label "Active" .
+
+s223:EnumeratedActuatableProperty a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Enumerated actuatable property" ;
+    rdfs:subClassOf s223:ActuatableProperty,
+        s223:Enumerable,
+        s223:NonQuantifiableProperty .
+
+s223:EnumeratedObservableProperty a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Enumerated observable property" ;
+    rdfs:subClassOf s223:Enumerable,
+        s223:NonQuantifiableProperty,
+        s223:ObservableProperty .
+
+s223:ExhaustContext a s223:Class ;
+    rdfs:label "Exhaust Context" ;
+    rdfs:subClassOf s223:Context .
+
+s223:ExternalSource a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "External source" ;
+    rdfs:subClassOf s223:Concept .
+
+s223:Fan a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Fan" ;
+    rdfs:subClassOf s223:FlowDevice ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class s223:ConnectionPoint ;
+            sh:minCount 2 ;
+            sh:name "Air inlet point" ;
+            sh:path s223:hasConnectionPoint ] .
+
+s223:FinnedHeatExchanger a s223:Class ;
+    rdfs:label "Finned heat exchanger" ;
+    rdfs:subClassOf s223:HeatExchanger .
+
+s223:FlowSensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Flow sensor" ;
+    rdfs:comment "A FlowSensor is a specialization of a Sensor that produces an ObservableProperty that is quantifiable and represents a flow measurement. " ;
+    rdfs:subClassOf s223:Sensor .
+
+s223:FunctionBlock a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Function block" ;
+    rdfs:comment "A FunctionBlock is used to model transfer and/or transformation of information  (i.e. Property). It has relations to input properties and output properties. The actual algorithms that perform the transformations are described in CDL and are out of scope of the 223 standard." ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ sh:class s223:Property ;
+            sh:path s223:producesOutput ],
+        [ sh:class s223:Property ;
+            sh:path s223:usesInput ] .
+
+s223:HVACOperatingMode-Auto a s223:EnumerationKind-HVACOperatingMode ;
+    rdfs:label "Auto" .
+
+s223:HVACOperatingMode-CoolOnly a s223:EnumerationKind-HVACOperatingMode ;
+    rdfs:label "CoolOnly" .
+
+s223:HVACOperatingMode-FanOnly a s223:EnumerationKind-HVACOperatingMode ;
+    rdfs:label "FanOnly" .
+
+s223:HVACOperatingMode-HeatOnly a s223:EnumerationKind-HVACOperatingMode ;
+    rdfs:label "HeatOnly" .
+
+s223:HVACOperatingMode-Off a s223:EnumerationKind-HVACOperatingMode ;
+    rdfs:label "Off" .
+
+s223:HVACOperatingStatus-Cooling a s223:EnumerationKind-HVACOperatingStatus ;
+    rdfs:label "Cooling" .
+
+s223:HVACOperatingStatus-Dehumidifying a s223:EnumerationKind-HVACOperatingStatus ;
+    rdfs:label "Dehumidifying" .
+
+s223:HVACOperatingStatus-Heating a s223:EnumerationKind-HVACOperatingStatus ;
+    rdfs:label "Heating" .
+
+s223:HVACOperatingStatus-Off a s223:EnumerationKind-HVACOperatingStatus ;
+    rdfs:label "Off" .
+
+s223:HVACOperatingStatus-Ventilating a s223:EnumerationKind-HVACOperatingStatus ;
+    rdfs:label "Ventilating" .
+
+s223:HeatingCoil a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Heating coil" ;
+    rdfs:subClassOf s223:Coil .
+
+s223:HumiditySensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Humidity sensor" ;
+    rdfs:comment "A HumiditySensor is a specialization of a Sensor that produces an ObservableProperty that is quantifiable and represents a humidity measurement. " ;
+    rdfs:subClassOf s223:Sensor .
+
+s223:InletConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Inlet Connection Point" ;
+    rdfs:comment "An InletConnectionPoint is a subclass of  ConnectionPoint which has the direction of Inlet. An InletConnectionPoint indicates that a substance must flow into the device or space at this connection point and cannot flow the other direction." ;
+    rdfs:subClassOf s223:ConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:hasValue s223:Direction-Inlet ;
+            sh:path s223:hasDirection ] .
+
+s223:InletSystemConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Inlet System Connection Point" ;
+    rdfs:comment "This class is analogous to the InletConnectionPoint class, but for SystemConnectionPoints." ;
+    rdfs:subClassOf s223:SystemConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:hasValue s223:Direction-Inlet ;
+            sh:path s223:hasDirection ] .
+
+s223:InletZoneConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Inlet Zone Connection Point" ;
+    rdfs:comment "This class is analogous to the InletConnectionPoint class, but for ZoneConnectionPoints." ;
+    rdfs:subClassOf s223:ZoneConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:hasValue s223:Direction-Inlet ;
+            sh:path s223:hasDirection ] .
+
+s223:Light-Infrared a s223:Medium-Light ;
+    rdfs:label "Light-Infrared" .
+
+s223:Light-Visible a s223:Medium-Light ;
+    rdfs:label "Light-Visible" .
+
+s223:LightSensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Light sensor" ;
+    rdfs:subClassOf s223:Sensor .
+
+s223:Luminaire a s223:Class ;
+    rdfs:label "Luminaire" ;
+    rdfs:subClassOf s223:Device .
+
+s223:ManualDamper a s223:Class ;
+    rdfs:label "Manual damper" ;
+    rdfs:subClassOf s223:Damper .
+
+s223:Medium-Air a s223:EnumerationKind-Medium ;
+    rdfs:label "Medium-Air" .
+
+s223:Medium-Glycol a s223:EnumerationKind-Medium ;
+    rdfs:label "Medium-Glycol" .
+
+s223:MotorizedDamper a s223:Class ;
+    rdfs:label "Motorized damper" ;
+    rdfs:subClassOf s223:Damper .
+
+s223:MotorizedThreeWayValve a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Motorized three way valve" ;
+    rdfs:subClassOf s223:MotorizedValve .
+
+s223:MotorizedTwoWayValve a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Motorized two way valve" ;
+    rdfs:subClassOf s223:MotorizedValve .
+
+s223:OccupancySensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Occupancy sensor" ;
+    rdfs:subClassOf s223:Sensor .
+
+s223:OccupancyStatus-Occupied a s223:EnumerationKind-OccupancyStatus ;
+    rdfs:label "Occupied" .
+
+s223:OccupancyStatus-Unknown a s223:EnumerationKind-OccupancyStatus ;
+    rdfs:label "Unknown" .
+
+s223:OccupancyStatus-Unoccupied a s223:EnumerationKind-OccupancyStatus ;
+    rdfs:label "Unoccupied" .
+
+s223:OutletConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Outlet Connection Point" ;
+    rdfs:comment "A predefined subclass of ConnectionPoint which has the direction of Outlet. An OutletConnectionPoint indicates that a substance must flow out of the device or space at this connection point and cannot flow the other direction. " ;
+    rdfs:subClassOf s223:ConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:hasValue s223:Direction-Outlet ;
+            sh:path s223:hasDirection ] .
+
+s223:OutletSystemConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Outlet System Connection Point" ;
+    rdfs:comment "This class is analogous to the OutletConnectionPoint class, but for SystemConnectionPoints." ;
+    rdfs:subClassOf s223:SystemConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:hasValue s223:Direction-Outlet ;
+            sh:path s223:hasDirection ] .
+
+s223:OutletZoneConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Outlet Zone Connection Point" ;
+    rdfs:comment "This class is analogous to the OutletConnectionPoint class, but for ZoneConnectionPoints." ;
+    rdfs:subClassOf s223:ZoneConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:hasValue s223:Direction-Outlet ;
+            sh:path s223:hasDirection ] .
+
+s223:Particulate-PM1.0 a s223:Substance-Particulate ;
+    rdfs:label "Particulate-PM1.0" .
+
+s223:Particulate-PM10.0 a s223:Substance-Particulate ;
+    rdfs:label "Particulate-PM10.0" .
+
+s223:Particulate-PM2.5 a s223:Substance-Particulate ;
+    rdfs:label "Particulate-PM2.5" .
+
+s223:ParticulateSensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Particulate sensor" ;
+    rdfs:subClassOf s223:Sensor ;
+    sh:property [ sh:class s223:Substance-Particulate ;
+            sh:path s223:measuresSubstance ] .
+
+s223:Pipe a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Pipe" ;
+    rdfs:comment "A predefined subClassOf Connection typically used to convey a liquid or compressed gas in a building." ;
+    rdfs:subClassOf s223:Connection .
+
+s223:PlateHeatExchanger a s223:Class ;
+    rdfs:label "Plate heat exchanger" ;
+    rdfs:subClassOf s223:HeatExchanger .
+
+s223:PositionStatus-Closed a s223:EnumerationKind-PositionStatus ;
+    rdfs:label "Closed" .
+
+s223:PositionStatus-Open a s223:EnumerationKind-PositionStatus ;
+    rdfs:label "Open" .
+
+s223:PositionStatus-Unknown a s223:EnumerationKind-PositionStatus ;
+    rdfs:label "Unknown" .
+
+s223:PressureSensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Pressure sensor" ;
+    rdfs:comment "A PressureSensor is a specialization of a Sensor that produces an ObservableProperty that is quantifiable and represents a pressure measurement." ;
+    rdfs:subClassOf s223:Sensor .
+
+s223:Pump a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Pump" ;
+    rdfs:subClassOf s223:FlowDevice .
+
+s223:QuantifiableActuatableProperty a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Quantifiable Actuatable Property" ;
+    rdfs:comment "This class is for quantifiable values that are specified for an object (System, Device, etc.), such as a setpoint." ;
+    rdfs:subClassOf s223:ActuatableProperty,
+        s223:QuantifiableProperty .
+
+s223:QuantifiableObservableProperty a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Quantifiable Observable Property" ;
+    rdfs:comment "This class is for measured (observed) properties that have numerical values, such as a temperature reading." ;
+    rdfs:subClassOf s223:ObservableProperty,
+        s223:QuantifiableProperty .
+
+s223:ReturnContext a s223:Class ;
+    rdfs:label "Return Context" ;
+    rdfs:subClassOf s223:Context .
+
+s223:Role-Cooling a s223:EnumerationKind-Role ;
+    rdfs:label "Role-Cooling" .
+
+s223:Role-Discharge a s223:EnumerationKind-Role ;
+    rdfs:label "Role-Discharge" .
+
+s223:Role-Exhaust a s223:EnumerationKind-Role ;
+    rdfs:label "Role-Exhaust" .
+
+s223:Role-Generator a s223:EnumerationKind-Role ;
+    rdfs:label "Role-Generator" .
+
+s223:Role-Heating a s223:EnumerationKind-Role ;
+    rdfs:label "Role-Heating" .
+
+s223:Role-Load a s223:EnumerationKind-Role ;
+    rdfs:label "Role-Load" .
+
+s223:Role-Primary a s223:EnumerationKind-Role ;
+    rdfs:label "Role-Primary" .
+
+s223:Role-Recirculating a s223:EnumerationKind-Role ;
+    rdfs:label "Role-Recirculating" .
+
+s223:Role-Return a s223:EnumerationKind-Role ;
+    rdfs:label "Role-Return" .
+
+s223:Role-Secondary a s223:EnumerationKind-Role ;
+    rdfs:label "Role-Secondary" .
+
+s223:Role-Supply a s223:EnumerationKind-Role ;
+    rdfs:label "Role-Supply" .
+
+s223:RunStatus-Off a s223:EnumerationKind-RunStatus ;
+    rdfs:label "Off" .
+
+s223:RunStatus-On a s223:EnumerationKind-RunStatus ;
+    rdfs:label "On" .
+
+s223:RunStatus-Unknown a s223:EnumerationKind-RunStatus ;
+    rdfs:label "Unknown" .
+
+s223:ShellTubeHeatExchanger a s223:Class ;
+    rdfs:label "Shell tube heat exchanger" ;
+    rdfs:subClassOf s223:HeatExchanger .
+
+s223:StorageTank a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Storage tank" ;
+    rdfs:subClassOf s223:Device .
+
+s223:Substance-CO a s223:EnumerationKind-Substance ;
+    rdfs:label "Substance-CO" .
+
+s223:Substance-CO2 a s223:EnumerationKind-Substance ;
+    rdfs:label "Substance-CO2" .
+
+s223:Substance-Soot a s223:EnumerationKind-Substance ;
+    rdfs:label "Substance-Soot" .
+
+s223:SupplyContext a s223:Class ;
+    rdfs:label "Supply Context" ;
+    rdfs:subClassOf s223:Context .
+
+s223:TemperatureSensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Temp sensor" ;
+    rdfs:comment "A TemperatureSensor is a specialization of a Sensor that produces an ObservableProperty that is quantifiable and represents a temperature measurement. " ;
+    rdfs:subClassOf s223:Sensor .
+
+s223:ThreeSpeedSetting-High a s223:EnumerationKind-ThreeSpeedSetting ;
+    rdfs:label "High" .
+
+s223:ThreeSpeedSetting-Low a s223:EnumerationKind-ThreeSpeedSetting ;
+    rdfs:label "Low" .
+
+s223:ThreeSpeedSetting-Medium a s223:EnumerationKind-ThreeSpeedSetting ;
+    rdfs:label "Medium" .
+
+s223:ThreeSpeedSetting-Off a s223:EnumerationKind-ThreeSpeedSetting ;
+    rdfs:label "Off" .
+
+s223:ThreeWayValve a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Three way valve" ;
+    rdfs:subClassOf s223:ManualValve .
+
+s223:TwoWayValve a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Two way valve" ;
+    rdfs:subClassOf s223:ManualValve .
+
+s223:VAV a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "VAV" ;
+    rdfs:subClassOf s223:Device,
+        s223:System ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class s223:Device ;
+            sh:minCount 0 ;
+            sh:path s223:contains ] .
+
+s223:VFD a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "VFD" ;
+    rdfs:subClassOf s223:Device .
+
+s223:VirtualSensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Virtual sensor" ;
+    rdfs:subClassOf s223:Sensor ;
+    sh:property [ sh:class s223:Property ;
+            sh:path s223:hasFunctionInput ],
+        [ sh:maxCount 0 ;
+            sh:path s223:hasMeasurementLocation ] .
+
+s223:Water-ChilledWater a s223:Medium-Water ;
+    rdfs:label "Water-Chilled water" .
+
+s223:Water-HotWater a s223:Medium-Water ;
+    rdfs:label "Water-Hot water" .
+
+s223:Weekday-Friday a s223:DayOfWeek-Weekday ;
+    rdfs:label "Friday" .
+
+s223:Weekday-Monday a s223:DayOfWeek-Weekday ;
+    rdfs:label "Monday" .
+
+s223:Weekday-Thursday a s223:DayOfWeek-Weekday ;
+    rdfs:label "Thursday" .
+
+s223:Weekday-Tuesday a s223:DayOfWeek-Weekday ;
+    rdfs:label "Tuesday" .
+
+s223:Weekday-Wednesday a s223:DayOfWeek-Weekday ;
+    rdfs:label "Wednesday" .
+
+s223:Weekend-Saturday a s223:DayOfWeek-Weekend ;
+    rdfs:label "Saturday" .
+
+s223:Weekend-Sunday a s223:DayOfWeek-Weekend ;
+    rdfs:label "Sunday" .
+
+s223:connectedAt a rdf:Property ;
+    rdfs:label "connected at" ;
+    rdfs:domain s223:Connection ;
+    rdfs:range s223:ConnectionPoint .
+
+s223:connectedFrom a rdf:Property ;
+    rdfs:label "connected from" ;
+    rdfs:comment "The relation connectedFrom indicates that connectable things are connected with a specific direction of flow. B is connectedFrom A indicates a directionality beginning at A and ending at B.  The inverse direction is indicated by connectedTo." ;
+    rdfs:domain s223:Device ;
+    rdfs:range s223:Device .
+
+s223:hasActuatorPosition a rdf:Property ;
+    rdfs:label "Actuator Position" ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+s223:hasBrickReference a rdf:Property ;
+    rdfs:label "has Brick reference" .
+
+s223:hasDamperPosition a rdf:Property ;
+    rdfs:label "has damper position" ;
+    rdfs:range xsd:decimal .
+
+s223:hasInletPressure a rdf:Property ;
+    rdfs:label "Inlet Pressure" ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+s223:hasJunction a rdf:Property ;
+    rdfs:label "has junction" ;
+    rdfs:subPropertyOf s223:contains .
+
+s223:hasMaxActuatorTorque a rdf:Property ;
+    rdfs:label "Maximum torque for the actuator" ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+s223:hasMaxRange a rdf:Property ;
+    rdfs:label "has max range" .
+
+s223:hasMember a rdf:Property ;
+    rdfs:label "has member" .
+
+s223:hasSubstance a rdf:Property ;
+    rdfs:label "has Substance" .
+
+s223:hasTemperature a rdf:Property ;
+    rdfs:label "hasTemperature" ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+s223:hasTimestamp a rdf:Property ;
+    rdfs:label "has timestamp" ;
+    rdfs:range xsd:dateTime .
+
+s223:inContextOf a rdf:Property ;
+    rdfs:label "in context of" .
+
+s223:includes a rdf:Property ;
+    rdfs:label "includes" .
+
+s223:inverseOf a rdf:Property ;
+    rdfs:label "inverse of" .
+
+s223:isValueOf a rdf:Property ;
+    rdfs:label "isValueOf" ;
+    s223:inverseOf s223:hasValue .
+
+s223:ContextualRole a sh:NodeShape ;
+    rdfs:comment "A ContextualRole is a role where the role value is only meaningful in a specified context, such as from a particular perspective (relativeTo) or only under certain conditions (inState). The ContextualRole instance must have at least one of these contexts, but may have several." ;
+    sh:or ( [ sh:property [ sh:class s223:State ;
+                        sh:minCount 1 ;
+                        sh:path s223:inState ] ] [ sh:property [ sh:class s223:Device ;
+                        sh:minCount 1 ;
+                        sh:path s223:relativeTo ] ] ) ;
+    sh:property [ sh:class s223:EnumerationKind-Role ;
+            sh:minCount 1 ;
+            sh:path s223:hasRole ] .
+
+s223:DifferentialSensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Differential sensor" ;
+    rdfs:subClassOf s223:Sensor ;
+    sh:property [ sh:maxCount 2 ;
+            sh:minCount 2 ;
+            sh:path s223:hasMeasurementLocation ] .
+
+s223:Medium-Electricity a s223:Class,
+        s223:Medium-Electricity,
+        sh:NodeShape ;
+    rdfs:label "Electricity" ;
+    rdfs:subClassOf s223:EnumerationKind-Medium .
+
+s223:Setpoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Setpoint" ;
+    rdfs:subClassOf s223:Property,
+        qudt:Quantity ;
+    sh:property [ sh:datatype xsd:decimal ;
+            sh:path s223:hasDeadband ],
+        [ sh:datatype xsd:decimal ;
+            sh:path s223:hasValue ] .
+
+s223:State a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "State" ;
+    rdfs:subClassOf s223:Concept .
+
+s223:abstract a rdf:Property ;
+    rdfs:label "abstract" ;
+    rdfs:range xsd:boolean .
+
+s223:cnx a s223:SymmetricProperty ;
+    rdfs:label "cnx" ;
+    rdfs:comment "The cnx property is a symmetric property used to associate adjacent entities in an HVAC circuit (comprised of Device-ConnectionPoint-Connection-ConnectionPoint-Device sequences)" .
+
+s223:commandedState a rdf:Property ;
+    rdfs:label "commanded state" ;
+    rdfs:range xsd:boolean .
+
+s223:connected a s223:SymmetricProperty,
+        rdf:Property ;
+    rdfs:label "connected" ;
+    rdfs:comment "The relation connected indicates that two connectable things are connected without regard to and directionality of a process flow.  " .
+
+s223:connectedThrough a rdf:Property ;
+    rdfs:label "connected through" ;
+    rdfs:domain s223:Device ;
+    rdfs:range s223:Connection .
+
+s223:connectedTo a rdf:Property ;
+    rdfs:label "connected to" ;
+    rdfs:comment "The relation connectedTo indicates that connectable things are connected with a specific direction of flow. A is connectedTo B indicates a directionality beginning at A and ending at B.  The inverse direction is indicated by connectedFrom." ;
+    rdfs:domain s223:Device ;
+    rdfs:range s223:Device .
+
+s223:connectsFrom a rdf:Property ;
+    rdfs:label "connects from" .
+
+s223:connectsTo a rdf:Property ;
+    rdfs:label "connects to" ;
+    rdfs:domain s223:Connection ;
+    rdfs:range s223:Device .
+
+s223:electricConsumption a rdf:Property ;
+    rdfs:label "Electric Consumption" .
+
+s223:encloses a rdf:Property ;
+    rdfs:label "encloses" .
+
+s223:hasAspect a rdf:Property ;
+    rdfs:label "has aspect" .
+
+s223:hasContextualRole a rdf:Property ;
+    rdfs:label "has Contextual Role" .
+
+s223:hasDeadband a rdf:Property ;
+    rdfs:label "has deadband" .
+
+s223:hasDevice a rdf:Property ;
+    rdfs:label "has device" ;
+    s223:inverseOf s223:isDeviceOf ;
+    rdfs:comment "The relation hasDevice represents a containment relationship between a system and a device or between two devices. A hasDevice B indicates that device or system A contains device B." ;
+    rdfs:domain s223:System ;
+    rdfs:range s223:Device ;
+    rdfs:subPropertyOf s223:contains .
+
+s223:hasEnumerationKind a rdf:Property ;
+    rdfs:label "has enumeration kind" .
+
+s223:hasFunctionInput a rdf:Property ;
+    rdfs:label "has function input" .
+
+s223:hasMeasurementPrecision a rdf:Property ;
+    rdfs:label "has measurement precision" .
+
+s223:hasMeasurementResolution a rdf:Property ;
+    rdfs:label "has measurement resolution" .
+
+s223:hasMeasurementUncertainty a rdf:Property ;
+    rdfs:label "has measurement uncertainty" .
+
+s223:hasMinRange a rdf:Property ;
+    rdfs:label "has min range" .
+
+s223:hasOutletPressure a rdf:Property ;
+    rdfs:label "Outlet Pressure" ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+s223:hasPhysicalLocation a rdf:Property ;
+    rdfs:label "has physical location" .
+
+s223:hasSetpoint a rdf:Property ;
+    rdfs:label "has setpoint" .
+
+s223:hasSubSystem a rdf:Property ;
+    rdfs:label "has sub system" ;
+    s223:inverseOf s223:isSubSystemOf ;
+    rdfs:comment "The relation hasSubSystem represents a containment relationship between two systems. A hasSubSystem B indicates that system A contains system B. The inverse relation for hasSubSystem is isSubSystemof." ;
+    rdfs:domain s223:System ;
+    rdfs:range s223:System ;
+    rdfs:subPropertyOf s223:contains .
+
+s223:hasSystemConnectionPoint a rdf:Property ;
+    rdfs:label "hasSystemConnectionPoint" .
+
+s223:inState a rdf:Property ;
+    rdfs:label "in State" .
+
+s223:isActuatedBy a rdf:Property ;
+    rdfs:label "isActuatedBy" ;
+    s223:inverseOf s223:actuatesProperty .
+
+s223:isDeviceOf a rdf:Property ;
+    rdfs:label "is device of" ;
+    s223:inverseOf s223:hasDevice ;
+    rdfs:domain s223:Device ;
+    rdfs:subPropertyOf s223:isContainedIn .
+
+s223:isObservedBy a rdf:Property ;
+    rdfs:label "is observed by" ;
+    s223:inverseOf s223:observesProperty .
+
+s223:isSubSystemOf a rdf:Property ;
+    rdfs:label "is sub system of" ;
+    s223:inverseOf s223:hasSubSystem ;
+    rdfs:comment "The relation represents a containment relationship between two systems. B isSubSystemof A indicates that system A contains system B. The inverse relation for isSubSystemof is hasSubSystem" ;
+    rdfs:domain s223:System ;
+    rdfs:range s223:System ;
+    rdfs:subPropertyOf s223:isContainedIn .
+
+s223:measuresSubstance a rdf:Property ;
+    rdfs:label "measures substance" .
+
+s223:ofSubstance a rdf:Property ;
+    rdfs:label "of substance" .
+
+s223:producesOutput a rdf:Property ;
+    rdfs:label "produces output" .
+
+s223:returnsTo a rdf:Property ;
+    rdfs:label "returns to" .
+
+s223:servesDomainSpace a rdf:Property ;
+    rdfs:label "serves domain space" .
+
+s223:servesZone a rdf:Property ;
+    rdfs:label "serves Zone" .
+
+s223:suppliesTo a rdf:Property ;
+    rdfs:label "supplies to" .
+
+s223:systemConnected a s223:SymmetricProperty ;
+    rdfs:label "System CP Connected" .
+
+s223:usesInput a rdf:Property ;
+    rdfs:label "uses input" .
+
+s223:zoneConnected a s223:SymmetricProperty ;
+    rdfs:label "Zone CP Connected" .
+
+<http://data.ashrae.org/standard223/1.0/model/all> a owl:Ontology ;
+    owl:imports <http://data.ashrae.org/standard223/1.0/model/core>,
+        <http://data.ashrae.org/standard223/1.0/model/device>,
+        <http://data.ashrae.org/standard223/1.0/model/system>,
+        <http://data.ashrae.org/standard223/1.0/vocab/enumeration> ;
+    owl:versionInfo "Created with TopBraid Composer" .
+
+<http://data.ashrae.org/standard223/1.0/model/device> a owl:Ontology ;
+    owl:imports <http://data.ashrae.org/standard223/1.0/model/core>,
+        <http://data.ashrae.org/standard223/1.0/vocab/enumeration>,
+        sh: ;
+    owl:versionInfo "Created with TopBraid Composer" ;
+    sh:declare [ sh:namespace "http://qudt.org/schema/qudt/"^^xsd:anyURI ;
+            sh:prefix "qudt" ],
+        [ sh:namespace "http://qudt.org/vocab/quantitykind/"^^xsd:anyURI ;
+            sh:prefix "quantitykind" ] .
+
+<http://data.ashrae.org/standard223/1.0/model/system> a owl:Ontology ;
+    spin:imports <http://topbraid.org/spin/owlrl-all> ;
+    owl:imports <http://data.ashrae.org/standard223/1.0/model/core>,
+        sh: ;
+    owl:versionInfo "Created with TopBraid Composer" ;
+    sh:declare [ sh:namespace "http://qudt.org/schema/qudt/"^^xsd:anyURI ;
+            sh:prefix "qudt" ],
+        [ sh:namespace "http://qudt.org/vocab/quantitykind/"^^xsd:anyURI ;
+            sh:prefix "quantitykind" ] .
+
+s223:Coil a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Coil" ;
+    rdfs:subClassOf s223:HeatExchanger .
+
+s223:Damper a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Damper" ;
+    rdfs:subClassOf s223:Device ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class s223:ConnectionPoint ;
+            sh:minCount 2 ;
+            sh:name "Air inlet point" ;
+            sh:path s223:hasConnectionPoint ] .
+
+s223:Enumerable a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Enumerable" ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ sh:class s223:EnumerationKind ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasEnumerationKind ] .
+
+s223:EnumerationKind-Effectiveness a s223:Class,
+        s223:EnumerationKind-Effectiveness,
+        sh:NodeShape ;
+    rdfs:label "Effectiveness" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+s223:FlowDevice a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Flow Device" ;
+    rdfs:subClassOf s223:Device ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class s223:ConnectionPoint ;
+            sh:minCount 2 ;
+            sh:name "Inlet or Outlet point property" ;
+            sh:path s223:hasConnectionPoint ;
+            sh:severity sh:Info ],
+        [ a sh:PropertyShape ;
+            sh:class s223:QuantifiableProperty ;
+            sh:minCount 0 ;
+            sh:name "outlet pressure shape" ;
+            sh:path s223:hasOutletPressure ],
+        [ a sh:PropertyShape ;
+            sh:class s223:QuantifiableProperty ;
+            sh:minCount 0 ;
+            sh:name "electric consumption shape" ;
+            sh:path s223:electricConsumption ] .
+
+s223:ManualValve a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Manual Valve" ;
+    rdfs:subClassOf s223:Valve .
+
+s223:MotorizedValve a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Motorized Valve" ;
+    rdfs:subClassOf s223:Valve .
+
+s223:NonQuantifiableProperty a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "NonQuantifiableProperty" ;
+    rdfs:subClassOf s223:Property .
+
+s223:PhysicalSpace a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Physical space" ;
+    rdfs:comment "A PhysicalSpace is an architectural concept that can represent a room, a collection of rooms such as a floor, a part of a room, or any space that might not even be thought of as a room, such as a patio space." ;
+    rdfs:subClassOf s223:Connectable ;
+    sh:property [ sh:class s223:PhysicalSpace ;
+            sh:path s223:contains ],
+        [ sh:class s223:DomainSpace ;
+            sh:path s223:encloses ] .
+
+s223:Segment a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Segment" ;
+    rdfs:comment "When necessary, a Connection may be subdivided into a network of Segments, joined at Junctions. This can be useful for identifying a segment of a duct before a split, for example." ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ sh:maxCount 2 ;
+            sh:message "Segment is missing one or both endpoints (Junction or ConnectionPoint)" ;
+            sh:minCount 2 ;
+            sh:or ( [ sh:class s223:Junction ] [ sh:class s223:ConnectionPoint ] ) ;
+            sh:path s223:lnx ;
+            sh:qualifiedMaxCount 1 ;
+            sh:qualifiedValueShape [ sh:class s223:ConnectionPoint ] ;
+            sh:severity sh:Warning ] .
+
+s223:Valve a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Valve" ;
+    rdfs:subClassOf s223:Device .
+
+s223:Zone a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Zone" ;
+    rdfs:comment "A Zone represents a collection of Spaces to identify a domain of control, such as a Lighting Zone." ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ sh:or ( [ sh:class s223:DomainSpace ] [ sh:class s223:Zone ] ) ;
+            sh:path s223:contains ],
+        [ sh:class s223:EnumerationKind-Domain ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasDomain ],
+        s223:hasPropertyShape .
+
+s223:actuatesProperty a rdf:Property ;
+    rdfs:label "actuates Property" ;
+    s223:inverseOf s223:isActuatedBy .
+
+s223:connectsAt a rdf:Property ;
+    rdfs:label "connects at" ;
+    s223:inverseOf s223:connectsThrough .
+
+s223:connectsThrough a rdf:Property ;
+    rdfs:label "connects through" ;
+    s223:inverseOf s223:connectsAt ;
+    rdfs:domain s223:ConnectionPoint ;
+    rdfs:range s223:Connection .
+
+s223:hasDomain a rdf:Property ;
+    rdfs:label "has domain" .
+
+s223:hasExternalReference a rdf:Property ;
+    rdfs:label "has external data source" ;
+    rdfs:subPropertyOf ref:hasExternalReference .
+
+s223:isConnectionPointOf a rdf:Property ;
+    rdfs:label "is connection point of" ;
+    s223:inverseOf s223:hasConnectionPoint ;
+    rdfs:comment "The relation isConnectionPointOf is part of a pair of relations that bind a connection point to a connectable thing. It is the inverse of the relation hasConnectionPoint (see `s223:hasConnectionPoint`)." .
+
+s223:lnx a s223:SymmetricProperty ;
+    rdfs:label "lnx" ;
+    rdfs:comment "The lnx property is a symmetric property associating adjacent entities in a Segment-Junction Network." .
+
+s223:mapsTo a rdf:Property ;
+    rdfs:label "mapsTo" .
+
+s223:observesProperty a rdf:Property ;
+    rdfs:label "observes property" ;
+    s223:inverseOf s223:isObservedBy ;
+    rdfs:comment "The relation observesProperty binds a sensor to the ObservableProperty that represents the measured value." .
+
+s223:relativeTo a rdf:Property ;
+    rdfs:label "relative to" .
+
+s223:ActuatableProperty a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "actuatable property" ;
+    rdfs:comment "This class describes non-numeric actuator/control settings, such as the state of a switch (\"on\" or \"off\")" ;
+    rdfs:subClassOf s223:Property .
+
+s223:DayOfWeek-Weekend a s223:Class,
+        s223:DayOfWeek-Weekend,
+        sh:NodeShape ;
+    rdfs:label "Day of week-Weekend",
+        "Weekend" ;
+    rdfs:subClassOf s223:EnumerationKind-DayOfWeek .
+
+s223:DomainSpace a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Space" ;
+    rdfs:comment "A DomainSpace is an atomic subdivision (or component) of a Zone and is associated with a Domain such as Lighting, Heating, etc. Physical spaces can contain Domain spaces." ;
+    rdfs:subClassOf s223:Connectable ;
+    sh:property [ sh:class s223:EnumerationKind-Domain ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasDomain ],
+        s223:hasPropertyShape .
+
+s223:EnumerationKind-DayOfWeek a s223:Class,
+        s223:EnumerationKind-DayOfWeek,
+        sh:NodeShape ;
+    rdfs:label "Day of Week" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+s223:Medium-Light a s223:Class,
+        s223:Medium-Light,
+        sh:NodeShape ;
+    rdfs:label "Medium-Light" ;
+    rdfs:subClassOf s223:EnumerationKind-Medium .
+
+s223:Medium-Water a s223:Class,
+        s223:Medium-Water,
+        sh:NodeShape ;
+    rdfs:label "Medium-Water" ;
+    rdfs:subClassOf s223:EnumerationKind-Medium .
+
+s223:ObservableProperty a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "observable property" ;
+    rdfs:comment "This class describes non-numeric observations or readings, such as the state of an alarm detector." ;
+    rdfs:subClassOf s223:Property .
+
+s223:hasContextualRoleShape a sh:PropertyShape ;
+    rdfs:label "has Contextual Role Shape" ;
+    sh:node s223:ContextualRole ;
+    sh:path s223:hasContextualRole .
+
+s223:hasMeasurementLocation a rdf:Property ;
+    rdfs:label "has measurement location" ;
+    rdfs:comment "The relation hasMeasurementLocation binds the ObservableProperty representing a measurement to the topological location where the measurement is made." .
+
+s223:hasMedium a rdf:Property ;
+    rdfs:label "has Medium" .
+
+s223:isContainedIn a rdf:Property ;
+    rdfs:label "is contained in" ;
+    s223:inverseOf s223:contains .
+
+<http://data.ashrae.org/standard223/1.0/model/core> a owl:Ontology ;
+    spin:imports <http://topbraid.org/spin/owlrl-all> ;
+    owl:imports <http://data.ashrae.org/standard223/1.0/extensions/settings>,
+        <http://data.ashrae.org/standard223/1.0/vocab/enumeration>,
+        <http://qudt.org/2.1/vocab/unit>,
+        sh:,
+        <https://brickschema.org/schema/Brick/ref> ;
+    owl:versionInfo "Created with TopBraid Composer" .
+
+<http://data.ashrae.org/standard223/1.0/vocab/enumeration> a owl:Ontology ;
+    owl:imports <http://data.ashrae.org/standard223/1.0/model/all>,
+        sh: ;
+    owl:versionInfo "Created with TopBraid Composer" .
+
+s223:Context a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Context" ;
+    rdfs:comment "The Context class is used to clarify the perspective to be taken when interpreting a given property." ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class s223:System ;
+            sh:minCount 1 ;
+            sh:path s223:relativeTo ] .
+
+s223:EnumerationKind-Direction a s223:Class,
+        s223:EnumerationKind-Direction,
+        sh:NodeShape ;
+    rdfs:label "Direction" ;
+    rdfs:comment "This class has enumerated instances of Bidirectional, Inlet and Outlet used to qualify ConnectionPoints." ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+s223:EnumerationKind-OccupancyStatus a s223:Class,
+        s223:EnumerationKind-OccupancyStatus,
+        sh:NodeShape ;
+    rdfs:label "Occupancy status" ;
+    rdfs:subClassOf s223:EnumerationKind,
+        s223:SetpointAspect .
+
+s223:EnumerationKind-PositionStatus a s223:Class,
+        s223:EnumerationKind-PositionStatus,
+        sh:NodeShape ;
+    rdfs:label "Position status" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+s223:EnumerationKind-RunStatus a s223:Class,
+        s223:EnumerationKind-RunStatus,
+        sh:NodeShape ;
+    rdfs:label "Run status" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+s223:HeatExchanger a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Heat exchanger" ;
+    rdfs:subClassOf s223:Device .
+
+s223:Junction a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Junction" ;
+    rdfs:comment "A Junction is used to join two or more Segments together. This might be where a duct splits or joins, or it might be where a Segment inside one System is joined to a Segment connecting to something outside that System." ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ sh:class s223:Segment ;
+            sh:message "Junction is missing one or more Segments" ;
+            sh:minCount 2 ;
+            sh:path s223:lnx ;
+            sh:severity sh:Info ] .
+
+s223:EnumerationKind-ThreeSpeedSetting a s223:Class,
+        s223:EnumerationKind-ThreeSpeedSetting,
+        sh:NodeShape ;
+    rdfs:label "Three speed setting" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+s223:Substance-Particulate a s223:Class,
+        s223:Substance-Particulate,
+        sh:NodeShape ;
+    rdfs:label "Particulate" ;
+    rdfs:subClassOf s223:EnumerationKind-Substance .
+
+s223:SymmetricProperty a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Symmetric property" ;
+    rdfs:subClassOf rdf:Property .
+
+s223:ZoneConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "ZoneConnectionPoint" ;
+    rdfs:comment "This is analogous to a ConnectionPoint, but for a Zone rather than a Device." ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ sh:maxCount 1 ;
+            sh:name "ConnectionPoint direction" ;
+            sh:or ( [ sh:hasValue s223:Direction-Inlet ] [ sh:hasValue s223:Direction-Outlet ] [ sh:hasValue s223:Direction-Bidirectional ] ) ;
+            sh:path s223:hasDirection ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:or ( [ sh:class s223:ConnectionPoint ] [ sh:class s223:ZoneConnectionPoint ] [ sh:class s223:Junction ] ) ;
+            sh:path s223:mapsTo ],
+        [ sh:or ( [ sh:class s223:ZoneConnectionPoint ] [ sh:class s223:ConnectionPoint ] ) ;
+            sh:path s223:zoneConnected ] .
+
+s223:hasConnectionPoint a rdf:Property ;
+    rdfs:label "has connection point" ;
+    s223:inverseOf s223:isConnectionPointOf ;
+    rdfs:comment "The relation hasConnectionPoint is part of a pair of relations that bind a connection point to a connectable thing. It is the inverse of the relation isConnectionPointOf." .
+
+s223:hasRole a rdf:Property ;
+    rdfs:label "has role" .
+
+s223:DayOfWeek-Weekday a s223:Class,
+        s223:DayOfWeek-Weekday,
+        sh:NodeShape ;
+    rdfs:label "Day of week-Weekday",
+        "Weekday" ;
+    rdfs:subClassOf s223:EnumerationKind-DayOfWeek .
+
+s223:Direction-Bidirectional a s223:EnumerationKind-Direction ;
+    rdfs:label "Direction-Bidirectional" ;
+    rdfs:comment "One of a set of values for the hasDirection property used to characterize the direction of flow associated with an instance of a ConnectionPoint. The value Bidirectional indicates that the direction of flow is not fixed in one direction. It depends on the status of some other part of the system, such as a valve position, that is expected to change during operation." .
+
+s223:Direction-Inlet a s223:EnumerationKind-Direction ;
+    rdfs:label "Direction-Inlet"@en,
+        "Direction-Entrée"@fr ;
+    rdfs:comment "One member of the enumerated valid values to characterize the hasDirection property. It is an instance of the Direction class." .
+
+s223:Direction-Outlet a s223:EnumerationKind-Direction ;
+    rdfs:label "Direction-Outlet"@en,
+        "Direction-Sortie"@fr ;
+    rdfs:comment "One member of the enumerated valid values to characterize the hasDirection property. It is an instance of the Direction class." .
+
+s223:EnumerationKind-HVACOperatingMode a s223:Class,
+        s223:EnumerationKind-HVACOperatingMode,
+        sh:NodeShape ;
+    rdfs:label "HVAC system/equipment operating mode. The policy under which the system is operating." ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+s223:EnumerationKind-HVACOperatingStatus a s223:Class,
+        s223:EnumerationKind-HVACOperatingStatus,
+        sh:NodeShape ;
+    rdfs:label "HVAC system/equipment operating status. What the system is currently doing." ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+s223:EnumerationKind-Substance a s223:Class,
+        s223:EnumerationKind-Substance,
+        sh:NodeShape ;
+    rdfs:label "Substance" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+s223:SystemConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "SystemConnectionPoint" ;
+    rdfs:comment "This is analogous to a ConnectionPoint, but for a System rather than a Device." ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:or ( [ sh:class s223:ConnectionPoint ] [ sh:class s223:SystemConnectionPoint ] [ sh:class s223:Junction ] ) ;
+            sh:path s223:mapsTo ],
+        [ sh:or ( [ sh:class s223:SystemConnectionPoint ] [ sh:class s223:ConnectionPoint ] ) ;
+            sh:path s223:systemConnected ],
+        [ sh:maxCount 1 ;
+            sh:name "ConnectionPoint direction" ;
+            sh:or ( [ sh:hasValue s223:Direction-Inlet ] [ sh:hasValue s223:Direction-Outlet ] [ sh:hasValue s223:Direction-Bidirectional ] ) ;
+            sh:path s223:hasDirection ] .
+
+s223:hasPropertyShape a sh:PropertyShape ;
+    rdfs:label "has Property Shape" ;
+    sh:class s223:Property ;
+    sh:path s223:hasProperty .
+
+s223:hasValue a rdf:Property ;
+    rdfs:label "hasValue" ;
+    rdfs:comment "hasValue is used to contain a fixed value that is part of a 223 model, rather than a computed, measured, or externally derived variable." .
+
+s223:hasProperty a rdf:Property ;
+    rdfs:label "has Property" .
+
+s223:Connectable a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Connectable" ;
+    s223:abstract true ;
+    rdfs:comment "Connectable is an abstract class that represents a thing (a Device, DomainSpace or PhysicalSpace) that can be connected via ConnectionPoints and Connections." ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ sh:class s223:Connectable ;
+            sh:name "SymmetricConnectableToConnectableShape" ;
+            sh:path s223:connected ],
+        [ sh:class s223:Connection ;
+            sh:name "DeviceToConnectionShape" ;
+            sh:path s223:connectedThrough ],
+        [ sh:class s223:Connectable ;
+            sh:name "ConnectableToConnectableShape" ;
+            sh:path s223:connectedTo ],
+        [ sh:class s223:ConnectionPoint ;
+            sh:name "DeviceToConnectionPointShape" ;
+            sh:path s223:hasConnectionPoint ] .
+
+s223:QuantifiableProperty a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Quantifiable Property" ;
+    rdfs:comment "This class is for quantifiable values that describe an object (System, Device, etc.) that are typically static. That is, they are neither measured nor specified in the course of operations." ;
+    rdfs:subClassOf s223:Property,
+        qudt:Quantity ;
+    sh:or ( [ sh:minCount 1 ;
+                sh:path qudt:hasQuantityKind ] [ sh:minCount 1 ;
+                sh:path qudt:unit ] ) ;
+    sh:property [ sh:class s223:Setpoint ;
+            sh:path s223:hasSetpoint ],
+        [ sh:datatype xsd:decimal ;
+            sh:path s223:hasValue ] .
+
+s223:Connection a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Connection" ;
+    rdfs:comment """A Connection is the modeling construct used to represent a physical thing (e.g., pipe, duct, or wire) that is used to convey some Medium (e.g., water, air, or electricity) between two connectable things. All Connections have two or more ConnectionPoints that are bound to either a Device (see `s223:Device`), DomainSpace (see `s223:DomainSpace`), or PhysicalSpace (see `s223:PhysicalSpace`). If the direction of flow is constrained that constraint is indicated by using one or more InletConnectionPoints (see ` s223:InletConnectionPoint`) to represent the inflow points and OutletConnectionPoints (see `s223:OutletConnectionPoint`) to represent the outflow points.
+  
+A Connection may contain branches or intersections. These are modeled using Segments (see `s223:Segment`) and Junctions (see `s223:Junction`).
+""" ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ sh:class s223:ConnectionPoint ;
+            sh:path s223:connectsAt ],
+        [ sh:class s223:Connectable ;
+            sh:name "ConnectionToUpstreamConnectableShape" ;
+            sh:path s223:connectsFrom ],
+        [ sh:class s223:Connectable ;
+            sh:name "ConnectionToDownstreamConnectableShape" ;
+            sh:path s223:connectsTo ],
+        [ sh:class s223:EnumerationKind-Medium ;
+            sh:maxCount 1 ;
+            sh:name "Connection medium" ;
+            sh:path s223:hasMedium ],
+        [ sh:class s223:EnumerationKind-Role ;
+            sh:path s223:hasRole ],
+        [ sh:class s223:Device ;
+            sh:path s223:returnsTo ],
+        [ sh:class s223:Device ;
+            sh:path s223:suppliesTo ],
+        s223:hasContextualRoleShape,
+        s223:hasPropertyShape .
+
+s223:EnumerationKind-Medium a s223:Class,
+        s223:EnumerationKind-Medium,
+        sh:NodeShape ;
+    rdfs:label "Medium" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+s223:Property a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Property" ;
+    rdfs:comment """An attribute, quality, or characteristic of a feature of interest.
+
+The Property class is the parent of all 6 variations of a property, which are:
+ActuatableProperty - such as the setting of a switch
+ObservableProperty - such as the state of an alarm detector
+NonQuantifiableProperty - such as the color of a device
+QuantifiableProperty - such as a maximum power rating
+QuantifiableActuatableProperty - such as a numerical setpoint
+QuantifiableObservableProperty - such as a temperature reading
+
+A QuantifiableProperty (or subClass thereof) must always be associated with a Unit and a QuantityKind, either explicitly from the Property, or through the associated Value. If the Unit is defined, the SHACL reasoner (if invoked) will figure out and assert the QuantityKind (the most general version).""" ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ sh:class s223:EnumerationKind ;
+            sh:path s223:hasAspect ],
+        [ sh:path s223:hasValue ],
+        [ sh:class s223:EnumerationKind-Substance ;
+            sh:path s223:ofSubstance ] ;
+    sh:xone ( [ sh:property [ a sh:PropertyShape ;
+                        sh:class ref:ExternalReference ;
+                        sh:description "Used to provide a pointer of any kind to a data source containing a simple value. Either s223:hasExternalReference or s223:hasValue is populated, but not both." ;
+                        sh:minCount 1 ;
+                        sh:path s223:hasExternalReference ] ] [ sh:property [ a sh:PropertyShape ;
+                        sh:minCount 1 ;
+                        sh:path s223:hasValue ] ] [ sh:and ( [ sh:property [ a sh:PropertyShape ;
+                                    sh:maxCount 0 ;
+                                    sh:path s223:hasExternalReference ] ] [ sh:property [ a sh:PropertyShape ;
+                                    sh:maxCount 0 ;
+                                    sh:path s223:hasValue ] ] ) ] ) .
+
+s223:System a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "System" ;
+    rdfs:comment """A System is a logical grouping of Devices for some functional or system reason, such as a "chilled water system, or HVAC system"
+A System is distinguished from a Device by the fact that you typically have to install and configure a System, while you might just install and use a Device.""" ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ a sh:PropertyShape ;
+            sh:minCount 0 ;
+            sh:name "system contains shape" ;
+            sh:or ( [ sh:class s223:Device ] [ sh:class s223:System ] [ sh:class s223:Junction ] ) ;
+            sh:path s223:contains ],
+        [ sh:class s223:EnumerationKind-Role ;
+            sh:path s223:hasRole ],
+        [ sh:class s223:SystemConnectionPoint ;
+            sh:name "SystemtoSystemConnectionPointShape" ;
+            sh:path s223:hasSystemConnectionPoint ],
+        [ sh:class s223:Zone ;
+            sh:path s223:servesZone ],
+        s223:hasContextualRoleShape,
+        s223:hasPropertyShape .
+
+s223:contains a rdf:Property ;
+    rdfs:label "contains" ;
+    s223:inverseOf s223:isContainedIn .
+
+s223:Sensor a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A Sensor produces an ObservableProperty which may be quantifiable, such as a temperature, flowrate, or concentration, or may not be quantifiable, such as an alarm state or occupancy state. " ;
+    rdfs:subClassOf s223:Device ;
+    sh:property [ sh:or ( [ sh:class s223:Device ] [ sh:class s223:Connection ] [ sh:class s223:Segment ] [ sh:class s223:ConnectionPoint ] ) ;
+            sh:path s223:hasMeasurementLocation ],
+        [ sh:class s223:QuantifiableProperty ;
+            sh:path s223:hasMeasurementPrecision ],
+        [ sh:class s223:QuantifiableProperty ;
+            sh:path s223:hasMeasurementResolution ],
+        [ sh:class s223:QuantifiableProperty ;
+            sh:path s223:hasMeasurementUncertainty ],
+        [ sh:class s223:EnumerationKind-Medium ;
+            sh:maxCount 1 ;
+            sh:path s223:hasMedium ],
+        [ sh:class s223:QuantifiableProperty ;
+            sh:path s223:hasMinRange ],
+        [ sh:class s223:ObservableProperty ;
+            sh:maxCount 1 ;
+            sh:path s223:observesProperty ],
+        [ sh:class s223:DomainSpace ;
+            sh:path s223:servesDomainSpace ] .
+
+s223:hasDirection a rdf:Property ;
+    rdfs:label "has Direction" ;
+    rdfs:comment "The hasDirection property is an enumeration indicating the direction of flow through a connection point and can have values Inlet, Outlet, or Bidirectional." .
+
+s223:EnumerationKind-Domain a s223:Class,
+        s223:EnumerationKind-Domain,
+        sh:NodeShape ;
+    rdfs:label "EnumerationKind Domain" ;
+    rdfs:subClassOf s223:EnumerationKind ;
+    sh:property [ sh:class s223:EnumerationKind-Role ;
+            sh:path s223:hasRole ] .
+
+s223:EnumerationKind a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Enumeration kind" ;
+    rdfs:subClassOf s223:Concept .
+
+s223:Concept a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Root concept for standard 223" ;
+    rdfs:comment "This is the superclass of all classes defined in the 223 standard." ;
+    rdfs:subClassOf rdfs:Resource ;
+    sh:not [ a sh:PropertyShape ;
+            sh:hasValue true ;
+            sh:message "You cannot have an instance of an abstract class" ;
+            sh:path ( rdf:type s223:abstract ) ] ;
+    sh:property [ sh:path s223:cnx ],
+        [ sh:path s223:hasProperty ],
+        [ sh:path rdfs:label ] .
+
+s223:ConnectionPoint a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "ConnectionPoint" ;
+    s223:abstract true ;
+    rdfs:comment """
+A ConnectionPoint is the modeling construct used to represent the fact that a Device can be connected to another Device. It is the abstract representation of the flange, wire terminal, or other physical feature where a connection is made. In addition to Devices, other Connectable things (see `s223:Connectable`) can have one or more ConnectionPoints.
+
+A ConnectionPoint can be constrained to relate to a specific medium such as air, water, or electricity which determines what other things can be connected to it. For example, by constraining a ConnectionPoint to be for air it cannot be used for an electrical connection.
+
+A ConnectionPoint also has a Direction which can have values of Inlet, Outlet, or Bidirectional. This directionality is used to constrain the way one device connects to another when combining them to form a model.
+
+A ConnectionPoint belongs to exactly one Connectable thing. """ ;
+    rdfs:subClassOf s223:Concept ;
+    sh:property [ sh:class s223:Connection ;
+            sh:maxCount 1 ;
+            sh:message "This ConnectionPoint must be associated with exactly 1 Connection." ;
+            sh:minCount 1 ;
+            sh:name "ConnectionPointToConnectionShape" ;
+            sh:path s223:connectsThrough ;
+            sh:severity sh:Info ],
+        [ sh:maxCount 1 ;
+            sh:name "ConnectionPoint direction" ;
+            sh:or ( [ sh:hasValue s223:Direction-Inlet ] [ sh:hasValue s223:Direction-Outlet ] [ sh:hasValue s223:Direction-Bidirectional ] ) ;
+            sh:path s223:hasDirection ],
+        [ sh:class s223:EnumerationKind-Medium ;
+            sh:maxCount 1 ;
+            sh:name "ConnectionPoint medium" ;
+            sh:path s223:hasMedium ],
+        [ sh:class s223:Connectable ;
+            sh:maxCount 1 ;
+            sh:name "ConnectionPointToDeviceShape" ;
+            sh:path s223:isConnectionPointOf ],
+        s223:hasPropertyShape .
+
+s223:EnumerationKind-Role a s223:Class,
+        s223:EnumerationKind-Role,
+        sh:NodeShape ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+s223:Device a s223:Class,
+        sh:NodeShape ;
+    rdfs:label "Device" ;
+    rdfs:comment "A Device is the modeling construct used to represent  a physical entity or piece of mechanical equipment that one might buy from a vendor - a tangible object designed to accomplish a specific task. Examples of possible devices include a pump, fan, heat exchanger, luminaire, temperature sensor, or flow meter." ;
+    rdfs:subClassOf s223:Connectable ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class s223:Device ;
+            sh:minCount 0 ;
+            sh:name "device contains shape" ;
+            sh:path s223:contains ],
+        [ sh:description "The commanded state of a device" ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "commanded State" ;
+            sh:path s223:commandedState ],
+        [ sh:class s223:PhysicalSpace ;
+            sh:path s223:hasPhysicalLocation ],
+        [ sh:class s223:EnumerationKind-Role ;
+            sh:path s223:hasRole ],
+        s223:hasContextualRoleShape,
+        s223:hasPropertyShape .
+
