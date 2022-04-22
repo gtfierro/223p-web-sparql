@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href=".">
+    <meta charset="utf-8">
+    <title>SPARQL</title>
+    <link rel="stylesheet" href="static/css/site.css">
+    <link href="https://unpkg.com/@triply/yasgui@4/build/yasgui.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/@triply/yasgui@4/build/yasgui.min.js"></script>
+  </head>
+  <body>
+	<h3><a href="#">223P Exploration</a></h3>
+	<div id="app">
+        <div class="wrapper">
+            <div class="col1">
+                <p>
+                    <label for="file-input">File Upload (.ttl): </label>
+                    <input id="file-input" type="file">
+                    <button @click="handleFile()">Submit</button>
+                </p>
+                <p>
+                    <label for="url-input">URL Fetch (.ttl): </label>
+                    <input id="url-input" type="text" value="">
+                    <button @click="handleURL()">Submit</button>
+                </p>
+		<p>
+        <!-- TODO: autogenerate this -->
+            <h4>223P Building Model Examples</h4>
+
+            <ul class="example-models">
+            
+                <li><a href="javascript: void(0);" @click="handleURL('compiled-models/sample.ttl', true)">sample</a></li>
+            
+                <li><a href="javascript: void(0);" @click="handleURL('compiled-models/FourSystemExample.ttl', true)">FourSystemExample</a></li>
+            
+                <li><a href="javascript: void(0);" @click="handleURL('compiled-models/system1.ttl', true)">system1</a></li>
+            
+                <li><a href="javascript: void(0);" @click="handleURL('compiled-models/belimo-example1.ttl', true)">belimo example1</a></li>
+            
+                <li><a href="javascript: void(0);" @click="handleURL('compiled-models/system2.ttl', true)">system2</a></li>
+            
+                <li><a href="javascript: void(0);" @click="handleURL('compiled-models/system4.ttl', true)">system4</a></li>
+            
+                <li><a href="javascript: void(0);" @click="handleURL('compiled-models/doe-medium-office-ahu-vav.ttl', true)">doe medium office ahu vav</a></li>
+            
+                <li><a href="javascript: void(0);" @click="handleURL('compiled-models/external-reference-example.ttl', true)">external reference example</a></li>
+            
+                <li><a href="javascript: void(0);" @click="handleURL('compiled-models/mr43-sample.ttl', true)">mr43 sample</a></li>
+            
+            </ul>
+
+            <h4>223P Queries</h4>
+            <ul class="example-models">
+            
+                <li><a href="javascript: void(0);" @click="handleQuery('U0VMRUNUID9zeXMgV0hFUkUgewogICAgP3N5cyByZGY6dHlwZS9yZGZzOnN1YkNsYXNzT2YqIHMyMjM6U3lzdGVtIC4KfQ==')">All Systems</a></li>
+            
+                <li><a href="javascript: void(0);" @click="handleQuery('U0VMRUNUID9zZW5zb3IgP2RldmljZSBXSEVSRSB7CiAgICA/c2Vuc29yIHJkZjp0eXBlL3JkZnM6c3ViQ2xhc3NPZiogczIyMzpTZW5zb3IgLgogICAgP3NlbnNvciBzMjIzOm9ic2VydmVzUHJvcGVydHkgP3Byb3BlcnR5IC4KICAgID9wcm9wZXJ0eSBxdWR0Omhhc1F1YW50aXR5S2luZCBxdWFudGl0eWtpbmQ6VGVtcGVyYXR1cmUgLgogICAgP3NlbnNvciBzMjIzOmhhc0RldmljZSA/ZGV2aWNlIC4KfQ==')">Temperature Sensors</a></li>
+            
+            </ul>
+
+		</p>
+            </div>
+            <div class="col2">
+                <file-list :files="files"></file-list>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="col1">
+                <statusbox :message="message" :error="error" :progress="progress"></statusbox>
+                <querybox ref="queryboxChild" element="querybox"></querybox>
+            </div>
+            <div class="col2">
+                <instance-info :url="inspect_url"></instance-info>
+            </div>
+        </div>
+        <div id="querybox-result">
+        </div>
+    </div>
+    <div class="footer">
+        <br />
+        <br />
+        <hr />
+        <p>Built by <a href="https://home.gtf.fyi">Gabe Fierro</a> || Source at <a href="https://github.com/gtfierro/223p-web-sparql">GitHub</a></p>
+    </div>
+  </body>
+  <script src="static/js/vue.global.prod.js"></script>
+  <script type="module" src="static/js/app.js"></script>
+</html>
