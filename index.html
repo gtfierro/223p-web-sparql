@@ -13,16 +13,19 @@
 	<div id="app">
         <div class="wrapper">
             <div class="col1">
-                <p>
-                    <label for="file-input">File Upload (.ttl): </label>
-                    <input id="file-input" type="file">
-                    <button @click="handleFile()">Submit</button>
-                </p>
-                <p>
-                    <label for="url-input">URL Fetch (.ttl): </label>
-                    <input id="url-input" type="text" value="">
-                    <button @click="handleURL()">Submit</button>
-                </p>
+                <details>
+                    <summary>Upload your own graphs</summary>
+                    <p>
+                        <label for="file-input">File Upload (.ttl): </label>
+                        <input id="file-input" type="file">
+                        <button @click="handleFile()">Submit</button>
+                    </p>
+                    <p>
+                        <label for="url-input">URL Fetch (.ttl): </label>
+                        <input id="url-input" type="text" value="">
+                        <button @click="handleURL()">Submit</button>
+                    </p>
+                </details>
 		<p>
         <!-- TODO: autogenerate this -->
             <h4>223P Building Model Examples</h4>
