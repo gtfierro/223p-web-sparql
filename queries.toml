@@ -1,0 +1,16 @@
+[[query]]
+name="All Systems"
+description="Query all systems"
+query="""SELECT ?sys WHERE {
+    ?sys rdf:type/rdfs:subClassOf* s223:System .
+}"""
+
+[[query]]
+name="Temperature Sensors"
+description="find sensors that measure temperature"
+query="""SELECT ?sensor ?device WHERE {
+    ?sensor rdf:type/rdfs:subClassOf* s223:Sensor .
+    ?sensor s223:observesProperty ?property .
+    ?property qudt:hasQuantityKind quantitykind:Temperature .
+    ?sensor s223:hasDevice ?device .
+}"""

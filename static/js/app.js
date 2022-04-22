@@ -1,5 +1,16 @@
 import init, {MemoryStore} from "./pkg/oxigraph.js";
 
+const prefixes = {
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "quantitykind": "http://qudt.org/vocab/quantitykind/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "unit": "http://qudt.org/vocab/unit/",
+    "s223": "http://data.ashrae.org/standard223#",
+}
+
 const typelookup = {
     "NamedNode": "uri",
     "BlankNode": "bnode",
@@ -118,6 +129,14 @@ const app = Vue.createApp({
                 });
         }
     },
+    handleQuery: function(queryString) {
+        //const self = this;
+        const inst = this.$refs.queryboxChild;
+        const query = atob(queryString);
+        console.log(this.$refs);
+        Vue.toRaw(inst.yasqe).setValue(query);
+        inst.yasqe.addPrefixes(prefixes);
+    },
     handleURL: function(inp_url, append) {
         var self = this;
         const url = inp_url ? inp_url : document.getElementById("url-input").value
@@ -164,16 +183,7 @@ app.component("querybox", {
         },
         reset: function() {
             Vue.toRaw(this.yasqe).setValue("SELECT * WHERE {\n ?s ?p ?o .\n} LIMIT 10");
-            this.yasqe.addPrefixes({
-                "owl": "http://www.w3.org/2002/07/owl#",
-                "sh": "http://www.w3.org/ns/shacl#",
-                "qudt": "http://qudt.org/schema/qudt/",
-                "quantitykind": "http://qudt.org/vocab/quantitykind/",
-                "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-                "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-                "unit": "http://qudt.org/vocab/unit/",
-                "s223": "http://data.ashrae.org/standard223#",
-            });
+            this.yasqe.addPrefixes(prefixes);
         },
 
     },
@@ -187,16 +197,7 @@ app.component("querybox", {
         this.yasqe = new Yasqe(document.getElementById(this.element), {
             persistent: null,
         });
-        this.yasqe.addPrefixes({
-            "owl": "http://www.w3.org/2002/07/owl#",
-            "sh": "http://www.w3.org/ns/shacl#",
-            "qudt": "http://qudt.org/schema/qudt/",
-            "quantitykind": "http://qudt.org/vocab/quantitykind/",
-            "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-            "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-            "unit": "http://qudt.org/vocab/unit/",
-            "s223": "http://data.ashrae.org/standard223#",
-        });
+        this.yasqe.addPrefixes(prefixes);
 
         this.yasr = new Yasr(document.getElementById(this.element + "-result"), {
             pluginOrder: ["table", "response"],

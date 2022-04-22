@@ -29,16 +29,6 @@ if __name__ == "__main__":
     graph.bind("qudtprefix21", rdflib.Namespace("http://qudt.org/2.1/vocab/prefix/"))
     graph.bind("qudtprefix", rdflib.Namespace("http://qudt.org/vocab/prefix/"))
 
-    # fix numeric prefixes
-    # new_bindings = {}
-    # ) for _ in range(5)) for pfx, namespace in graph.namespace_manager.namespaces():
-    #     if re.match(r'.*\d$', pfx):
-    #         new_suffix = ''.join(random.choices(string.ascii_lowercase, k=5))
-    #         pfx = re.sub(r'\d$', new_suffix, pfx)
-    #         new_bindings[pfx] = namespace
-    # for pfx, namespace in new_bindings.items():
-    #     graph.namespace_manager.bind(pfx, namespace)
-
     if args.reason:
         valid, _, report = pyshacl.validate(
             graph, advanced=True, js=True, allow_warnings=True

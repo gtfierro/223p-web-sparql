@@ -1,0 +1,36 @@
+@prefix bacnet: <http://data.ashrae.org/bacnet/2020#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ifc: <https://brickschema.org/extension/ifc#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://data.ashrae.org/standard223/1.0/data/external-ref-example/> .
+
+<http://data.ashrae.org/standard223/1.0/data/external-ref-example/>
+  a owl:Ontology ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> ;
+.
+
+:sample-device a bacnet:BACnetDevice ;
+    bacnet:device-instance 123 ;
+    # is this correct?
+    bacnet:hasPort [ a bacnet:Port ; bacnet:value 47808 ] .
+
+:xyz a s223:Property ;
+  s223:hasExternalReference [
+    a ref:TimeseriesReference ; # technically redundant -- can be inferred
+    ref:hasTimeseriesId "4665117e-ec75-47c2-a5ce-b71529cb159e" ;
+    ref:storedAt "postgresql://dataserver/sensordatadb" ;
+  ] ;
+  s223:hasExternalReference [
+    a ref:BACnetReference ;
+    bacnet:object-identifier "analog-value,5" ;
+    bacnet:object-name "BLDG-Z410-ZATS" ;
+    bacnet:objectOf :sample-device ;
+  ] ;
+.

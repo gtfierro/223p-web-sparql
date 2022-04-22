@@ -32,6 +32,14 @@
                 <li><a href="javascript: void(0);" @click="handleURL('{{ model_file }}', true)">{{ model_name }}</a></li>
             {% endfor %}
             </ul>
+
+            <h4>223P Queries</h4>
+            <ul class="example-models">
+            {% for query_name, query_text in queries.items() %}
+                <li><a href="javascript: void(0);" @click="handleQuery('{{ query_text }}')">{{ query_name }}</a></li>
+            {% endfor %}
+            </ul>
+
 		</p>
             </div>
             <div class="col2">
@@ -41,7 +49,7 @@
         <div class="wrapper">
             <div class="col1">
                 <statusbox :message="message" :error="error" :progress="progress"></statusbox>
-                <querybox element="querybox"></querybox>
+                <querybox ref="queryboxChild" element="querybox"></querybox>
             </div>
             <div class="col2">
                 <instance-info :url="inspect_url"></instance-info>

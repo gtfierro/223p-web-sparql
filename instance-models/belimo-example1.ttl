@@ -1,0 +1,74 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/data/belimo-example1
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix be1: <http://data.ashrae.org/standard223/data/belimo-example1#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://data.ashrae.org/standard223/1.0/data/belimo-example1>
+  a owl:Ontology ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+be1:ApplicationSystem
+  a s223:System ;
+  s223:cnx be1:ApplicationSystemLowerInletConnectionPoint ;
+  s223:cnx be1:ApplicationSystemLowerOutletConnectionPoint ;
+  s223:contains be1:EnergyMeterSystem ;
+  s223:contains be1:Valve_1 ;
+  rdfs:label "Application System" ;
+.
+be1:ApplicationSystemLowerInletConnectionPoint
+  a s223:SystemConnectionPoint ;
+  s223:mapsTo be1:ValveInletCP ;
+  rdfs:label "Application System Lower Inlet Connection Point" ;
+.
+be1:ApplicationSystemLowerOutletConnectionPoint
+  a s223:SystemConnectionPoint ;
+  s223:mapsTo be1:ValveOutletCP ;
+  rdfs:label "Application System Lower Outlet Connection Point" ;
+.
+be1:EnergyMeterDevice
+  a s223:Device ;
+  s223:contains be1:LowerFlowSensor ;
+  s223:contains be1:LowerTSensor ;
+  s223:contains be1:UpperTSensor ;
+  rdfs:label "Energy Meter Device" ;
+.
+be1:EnergyMeterSystem
+  a s223:System ;
+  s223:contains be1:EnergyMeterDevice ;
+  rdfs:label "Energy Meter System" ;
+.
+be1:LowerFlowSensor
+  a s223:Sensor ;
+  s223:hasMeasurementLocation be1:ValveInletCP ;
+  rdfs:label "Lower Flow Sensor" ;
+.
+be1:LowerTSensor
+  a s223:Sensor ;
+  s223:hasMeasurementLocation be1:ValveInletCP ;
+  rdfs:label "Lower T Sensor" ;
+.
+be1:UpperTSensor
+  a s223:Sensor ;
+  s223:hasMeasurementLocation be1:ValveOutletCP ;
+  rdfs:label "Upper T Sensor" ;
+.
+be1:ValveInletCP
+  a s223:ConnectionPoint ;
+  rdfs:label "Valve Inlet Connection Point" ;
+.
+be1:ValveOutletCP
+  a s223:ConnectionPoint ;
+  rdfs:label "Valve Outlet Connection Point" ;
+.
+be1:Valve_1
+  a s223:Valve ;
+  s223:cnx be1:ValveInletCP ;
+  s223:cnx be1:ValveOutletCP ;
+  rdfs:label "Valve 1" ;
+.
