@@ -173,8 +173,6 @@ app.component("querybox", {
                 "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
                 "unit": "http://qudt.org/vocab/unit/",
                 "s223": "http://data.ashrae.org/standard223#",
-                "g36": "http://data.ashrae.org/standard223/1.0/extension/g36#",
-                "brick": "https://brickschema.org/schema/Brick#",
             });
         },
 
@@ -198,8 +196,6 @@ app.component("querybox", {
             "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
             "unit": "http://qudt.org/vocab/unit/",
             "s223": "http://data.ashrae.org/standard223#",
-            "g36": "http://data.ashrae.org/standard223/1.0/extension/g36#",
-            "brick": "https://brickschema.org/schema/Brick#",
         });
 
         this.yasr = new Yasr(document.getElementById(this.element + "-result"), {
