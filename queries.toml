@@ -8,9 +8,9 @@ query="""SELECT ?sys WHERE {
 [[query]]
 name="Temperature Sensors"
 description="find sensors that measure temperature"
-query="""SELECT ?sensor ?device WHERE {
+query="""SELECT ?sensor ?location WHERE {
     ?sensor rdf:type/rdfs:subClassOf* s223:Sensor .
     ?sensor s223:observesProperty ?property .
     ?property qudt:hasQuantityKind quantitykind:Temperature .
-    ?sensor s223:hasDevice ?device .
+    ?sensor s223:hasMeasurementLocation ?location
 }"""
