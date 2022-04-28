@@ -15,9 +15,9 @@ $(MODELFILES): $(SOURCEFILES)
 	./tools/gather-files.sh
 
 $(REASONEDFILES): $(MODELFILES) 223p.ttl
-	python tools/compile.py -r -o $@ $(addprefix compiled-models/,$(notdir $@)) 223p.ttl
+	python tools/compile.py -r -o $@ $(addprefix instance-models/,$(notdir $@)) 223p.ttl
 
-index.html: 223p.ttl templates/index.html tools/compile-html.py $(REASONEDFILES) $(MODELFILES) queries.toml
+index.html: 223p.ttl templates/index.html tools/compile-html.py $(REASONEDFILES) queries.toml
 	python tools/compile-html.py
 
 print-%  : ; @echo $* = $($*)

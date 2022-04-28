@@ -180,7 +180,7 @@
 :vav1-sup-air-temp a s223:QuantifiableObservableProperty ;
     rdfs:label "supply air temperature" ;
     qudt:unit unit:DEG_C ;
-    qudt:hasQuantityKind quantitykind:ThermodynamicTemperature .
+    qudt:hasQuantityKind quantitykind:Temperature .
 :vav1-sup-air-temp-sensor a s223:Sensor ;
     s223:hasMeasurementLocation :vav1-dmp-out ;
     s223:observesProperty :vav1-sup-air-temp .
@@ -221,11 +221,11 @@
     rdfs:label "Temperature"@en ;
     s223:hasSetpoint :zone1-temp-setpoint ;
     qudt:unit unit:DEG_C ;
-    qudt:hasQuantityKind quantitykind:ThermodynamicTemperature .
+    qudt:hasQuantityKind quantitykind:Temperature .
 :zone1-temp-setpoint a s223:Setpoint ;
     rdfs:label "Zone Air Temperature Setpoint"@en ;
     s223:hasAspect s223:Medium-Air, s223:HVACOperatingMode-HeatOnly ;
-    qudt:hasQuantityKind quantitykind:ThermodynamicTemperature .
+    qudt:hasQuantityKind quantitykind:Temperature .
 :zone1-temp-sensor a s223:Sensor ;
     s223:hasMeasurementLocation :zone1-hvac-space-in ;
     s223:observesProperty :zone1-temp .
