@@ -14,3 +14,28 @@ query="""SELECT ?sensor ?location WHERE {
     ?property qudt:hasQuantityKind quantitykind:Temperature .
     ?sensor s223:hasMeasurementLocation ?location
 }"""
+
+[[query]]
+name="Systems Serving Spaces"
+description="find systems that serve physical spaces"
+query="""SELECT ?space ?system WHERE {
+  ?space a s223:PhysicalSpace ;
+         s223:encloses ?hvac_space .
+  ?hvac_space a s223:DomainSpace ;
+         s223:hasDomain s223:Domain-HVAC ;
+         s223:connectedFrom ?device .
+  ?system rdf:type/rdfs:subClassOf* s223:System ;
+         s223:contains ?device .
+}"""
+
+[[query]]
+name="Devices Serving Spaces"
+description="find devices that serve physical spaces"
+query="""SELECT ?space ?device WHERE {
+  ?space a s223:PhysicalSpace ;
+         s223:encloses ?hvac_space .
+  ?hvac_space a s223:DomainSpace ;
+         s223:hasDomain s223:Domain-HVAC ;
+         s223:connectedFrom ?device .
+  ?device rdf:type/rdfs:subClassOf* s223:Device .
+}"""
