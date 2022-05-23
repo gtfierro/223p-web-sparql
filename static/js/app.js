@@ -129,8 +129,9 @@ const app = Vue.createApp({
                 });
         }
     },
-    handleQuery: function(queryString) {
+    handleQuery: function(ev) {
         //const self = this;
+        const queryString = ev.target[ev.target.selectedIndex].value
         const inst = this.$refs.queryboxChild;
         const query = atob(queryString);
         console.log(this.$refs);
