@@ -94,6 +94,7 @@ office:economizer-outside-air-humidity-sensor a s223:Sensor ;
 
 # mixed air goes to the cooling coil
 office:mixed-air-duct a s223:Duct ;
+    s223:hasMedium s223:Medium-Air ;
     s223:cnx office:economizer-mixed-air, office:cooling-coil-in .
 
 # cooling coil
@@ -122,6 +123,7 @@ office:cooling-coil-out a s223:OutletConnectionPoint ;
 
 # cooling coil connects to heating coil
 office:duct1 a s223:Duct ;
+    s223:hasMedium s223:Medium-Air ;
     s223:cnx office:cooling-coil-out, office:heating-coil-in ;
 .
 
@@ -154,6 +156,7 @@ office:heating-coil-out a s223:OutletConnectionPoint ;
 
 # heating coil connects to fan
 office:duct2 a s223:Duct ;
+    s223:hasMedium s223:Medium-Air ;
     s223:cnx office:heating-coil-out, office:fan-in .
 
 # supply fan
@@ -181,6 +184,7 @@ office:fan-out a s223:OutletConnectionPoint ;
 
 # ducts connect the AHU to each VAV
 office:ahu-to-vav1 a s223:Duct ;
+    s223:hasMedium s223:Medium-Air ;
     s223:cnx office:fan-out, office:vav1-dmp-in .
 
 # VAV for each zone
@@ -210,6 +214,7 @@ office:vav1-dmp-damper-pos a s223:QuantifiableActuatableProperty ;
 
 # reheat coil connects to damper
 office:vav1-dmp-to-rhc a s223:Duct ;
+    s223:hasMedium s223:Medium-Air ;
     s223:cnx office:vav1-dmp-out, office:vav1-rhc-in .
 
 # reheat coil inside VAV
@@ -251,6 +256,7 @@ office:vav1-sup-air-humidity-sensor a s223:Sensor ;
 
 # VAV connects to the zone
 office:vav1-to-zone1  a s223:Duct ;
+    s223:hasMedium s223:Medium-Air ;
     s223:cnx office:vav1-rhc-out, office:zone1-hvac-space-in .
 
 # hvac zone
@@ -319,4 +325,5 @@ office:zone1-humidity-sensor a s223:Sensor ;
 
 # return from zone
 office:return-duct a s223:Duct ;
+    s223:hasMedium s223:Medium-Air ;
     s223:cnx office:zone1-hvac-space-out, office:economizer-return-air .

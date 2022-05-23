@@ -18,12 +18,16 @@ if __name__ == "__main__":
     parser.add_argument(
         "-r", "--reason", help="Run SHACL reasoning + validation", action="store_true"
     )
+    parser.add_argument(
+        "-i", "--do-import", help="Perform imports", action="store_true"
+    )
     args = parser.parse_args()
 
     for f in args.input:
         graph.parse(f, format=rdflib.util.guess_format(f))
 
-    env.import_dependencies(graph, recursive_limit=2)
+    if args.do_import:
+        env.import_dependencies(graph, recursive_limit=2)
 
     # remove QUDT prefix because it breaks things
     graph.bind("qudtprefix21", rdflib.Namespace("http://qudt.org/2.1/vocab/prefix/"))

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href=".">
+    <meta charset="utf-8">
+    <title>WebSPARQL</title>
+    <link rel="stylesheet" href="static/css/site.css">
+    <link href="static/css/yasgui.min.css" rel="stylesheet" type="text/css" />
+    <script src="static/js/yasgui.min.js"></script>
+  </head>
+  <body>
+	<h3><a href="#">223P Exploration</a></h3>
+	<div id="app">
+        <div class="wrapper">
+            <div class="col1">
+                <details>
+                    <summary>Upload your own graphs</summary>
+                    <p>
+                        <label for="file-input">File Upload (.ttl): </label>
+                        <input id="file-input" type="file">
+                        <button @click="handleFile()">Submit</button>
+                    </p>
+                    <p>
+                        <label for="url-input">URL Fetch (.ttl): </label>
+                        <input id="url-input" type="text" value="">
+                        <button @click="handleURL()">Submit</button>
+                    </p>
+                </details>
+		<p>
+        <!-- TODO: autogenerate this -->
+            <h4>223P Building Model Examples</h4>
+            <div id="model-examples">
+                <ul class="example-models">
+                
+                    <li><a href="javascript: void(0);" @click="handleURL('compiled-models/doe-medium-office-ahu-vav.ttl', true)">doe medium office ahu vav</a></li>
+                
+                </ul>
+            </div>
+
+            <h4>223P Queries</h4>
+            <div id="query-examples">
+                <ul class="example-models">
+                
+                    <li><a href="javascript: void(0);" @click="handleQuery('U0VMRUNUID9zeXMgV0hFUkUgewogICAgP3N5cyByZGY6dHlwZS9yZGZzOnN1YkNsYXNzT2YqIHMyMjM6U3lzdGVtIC4KfQ==')">All Systems</a></li>
+                
+                    <li><a href="javascript: void(0);" @click="handleQuery('U0VMRUNUID9zZW5zb3IgP2xvY2F0aW9uIFdIRVJFIHsKICAgID9zZW5zb3IgcmRmOnR5cGUvcmRmczpzdWJDbGFzc09mKiBzMjIzOlNlbnNvciAuCiAgICA/c2Vuc29yIHMyMjM6b2JzZXJ2ZXNQcm9wZXJ0eSA/cHJvcGVydHkgLgogICAgP3Byb3BlcnR5IHF1ZHQ6aGFzUXVhbnRpdHlLaW5kIHF1YW50aXR5a2luZDpUZW1wZXJhdHVyZSAuCiAgICA/c2Vuc29yIHMyMjM6aGFzTWVhc3VyZW1lbnRMb2NhdGlvbiA/bG9jYXRpb24KfQ==')">Temperature Sensors</a></li>
+                
+                </ul>
+            </div>
+
+		</p>
+            </div>
+            <div class="col2">
+                <file-list :files="files"></file-list>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="col1">
+                <statusbox :message="message" :error="error" :progress="progress"></statusbox>
+                <querybox ref="queryboxChild" element="querybox"></querybox>
+            </div>
+            <div class="col2">
+                <instance-info :url="inspect_url"></instance-info>
+            </div>
+        </div>
+        <div id="querybox-result">
+        </div>
+    </div>
+    <div class="footer">
+        <br />
+        <br />
+        <hr />
+        <p>Built by <a href="https://home.gtf.fyi">Gabe Fierro</a> || Source at <a href="https://github.com/gtfierro/223p-web-sparql">GitHub</a></p>
+    </div>
+  </body>
+  <script src="static/js/vue.global.prod.js"></script>
+  <script type="module" src="static/js/app.js"></script>
+</html>
