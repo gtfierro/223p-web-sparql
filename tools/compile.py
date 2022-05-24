@@ -37,6 +37,9 @@ if __name__ == "__main__":
         valid, _, report = pyshacl.validate(
             graph, advanced=True, js=True, allow_warnings=True
         )
+        valid, _, report = pyshacl.validate(
+            graph, advanced=True, js=True, allow_warnings=True
+        )
         if not valid:
             print(report)
     if args.output:
