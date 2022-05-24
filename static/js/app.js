@@ -260,6 +260,7 @@ app.component("instance-info", {
             PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             SELECT DISTINCT ?prop ?val ?sp ?sv WHERE {
                <${this.url}> ?prop ?val .
+               FILTER (!isBlank(?prop)) .
                OPTIONAL {
                { ?prop rdfs:range brick:TimeseriesReference . }
                 UNION
