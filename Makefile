@@ -9,8 +9,10 @@ update-223pstandard:
 223p.ttl: 223standard
 	python tools/compile.py -o 223p.ttl 223standard/collections/MODEL_SP223_all-v1.0.ttl
 
-compile-models:
+gather-files:
 	./tools/gather-files.sh
+
+compile-models:
 	./tools/compile-all.sh
 
 index.html: 223p.ttl templates/index.html tools/compile-html.py queries.toml compile-models
