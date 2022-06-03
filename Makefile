@@ -1,8 +1,6 @@
-.PHONY: update-223pstandard
-VPATH = instance-models:223pstandard/data
-SOURCEFILES=$(wildcard 223standard/data/*.ttl)
-MODELFILES=$(addprefix instance-models/,$(notdir $(SOURCEFILES)))
-REASONEDFILES=$(addprefix compiled-models/,$(notdir $(MODELFILES)))
+.PHONY: update-223pstandard compile-models all
+
+all: 223p.ttl index.html
 
 update-223pstandard:
 	./tools/get-or-update-223p.sh
@@ -11,16 +9,12 @@ update-223pstandard:
 223p.ttl: 223standard
 	python tools/compile.py -o 223p.ttl 223standard/collections/MODEL_SP223_all-v1.0.ttl
 
-$(MODELFILES): $(SOURCEFILES)
+compile-models:
 	./tools/gather-files.sh
+	./tools/compile-all.sh
 
-$(REASONEDFILES): $(MODELFILES) 223p.ttl
-	python tools/compile.py -r -o $@ $(addprefix instance-models/,$(notdir $@)) 223p.ttl
-
-index.html: 223p.ttl templates/index.html tools/compile-html.py $(REASONEDFILES) queries.toml
+index.html: 223p.ttl templates/index.html tools/compile-html.py queries.toml compile-models
 	python tools/compile-html.py
-
-print-%  : ; @echo $* = $($*)
 
 clean:
 	rm -f compiled-models/*.ttl

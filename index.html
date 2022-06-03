@@ -32,6 +32,8 @@
             <div id="model-examples">
                 <ul class="example-models">
                 
+                    <li><a href="javascript: void(0);" @click="handleURL('compiled-models/pritoni-latest.ttl', true)">pritoni latest</a></li>
+                
                     <li><a href="javascript: void(0);" @click="handleURL('compiled-models/doe-medium-office-ahu-vav.ttl', true)">doe medium office ahu vav</a></li>
                 
                     <li><a href="javascript: void(0);" @click="handleURL('compiled-models/sample_pritoni_model.ttl', true)">sample_pritoni_model</a></li>
@@ -50,6 +52,18 @@
                     <option value='U0VMRUNUID96b25lID9zeXN0ZW0gV0hFUkUgewoJP3pvbmUgcmRmOnR5cGUvcmRmczpzdWJDbGFzc09mKiBzMjIzOlpvbmUgLgogICAgP3N5c3RlbSByZGY6dHlwZS9yZGZzOnN1YkNsYXNzT2YqIHMyMjM6U3lzdGVtIDsKICAgICAgICAgICAgczIyMzpzZXJ2ZXNab25lID96b25lIC4KfQ=='><a href="javascript: void(0);">Systems Serving Zones</a></option>
                 
                     <option value='U0VMRUNUIERJU1RJTkNUID96b25lID9zeXN0ZW0gP2RldmljZSBXSEVSRSB7Cgk/em9uZSByZGY6dHlwZS9yZGZzOnN1YkNsYXNzT2YqIHMyMjM6Wm9uZSAuCiAgICA/c3lzdGVtIHJkZjp0eXBlL3JkZnM6c3ViQ2xhc3NPZiogczIyMzpTeXN0ZW0gOwogICAgICAgICAgICBzMjIzOmNvbnRhaW5zID9kZXZpY2UgOwogICAgICAgICAgICBzMjIzOnNlcnZlc1pvbmUgP3pvbmUgLgogICAgP2RldmljZSByZGY6dHlwZS9yZGZzOnN1YkNsYXNzT2YqIHMyMjM6RGV2aWNlIC4KfQ=='><a href="javascript: void(0);">Devices Serving Zones</a></option>
+                
+                    <option value='U0VMRUNUIChDT1VOVCAoP2QpIEFTID9jb3VudCkKV0hFUkV7CiAgICA/ZCBhIHMyMjM6THVtaW5haXJlIC4KICAgID9kIHMyMjM6aGFzUHJvcGVydHkgP3Byb3AgLgogICAgP3Byb3AgczIyMzpoYXNBc3BlY3QgczIyMzpFbnVtZXJhdGlvbktpbmQtUnVuU3RhdHVzIC4KICAgID9wcm9wIHMyMjM6aGFzVmFsdWUgczIyMzpSdW5TdGF0dXMtT24gLgp9'><a href="javascript: void(0);">How many lights are on?</a></option>
+                
+                    <option value='U0VMRUNUID9zZW5zb3IKV0hFUkUgewo/c2Vuc29yIGEgczIyMzpUZW1wZXJhdHVyZVNlbnNvciAuCn0='><a href="javascript: void(0);">What are all the temperature sensors?</a></option>
+                
+                    <option value='UFJFRklYIHBzbTogPGh0dHA6Ly9kYXRhLmFzaHJhZS5vcmcvc3RhbmRhcmQyMjMvMS4wL2RhdGEvcGQtc3ItbXAtcHJpdG9uaSM+CiAgICBQUkVGSVggczIyMzogPGh0dHA6Ly9kYXRhLmFzaHJhZS5vcmcvc3RhbmRhcmQyMjMjPgogICAgU0VMRUNUID9zZW5zb3IgP3BzCiAgICBXSEVSRSB7CiAgICB7U0VMRUNUID9wcyAoQ09VTlQgKD9hbnlkcykgQVMgP2NvdW50KQogICAgV0hFUkUgewogICAgQklORCAocHNtOkhWQUNab25lMSBBUyA/em9uZSkgLgogICAgP3pvbmUgczIyMzpjb250YWlucyA/ZHMgLgogICAgP3BzIHMyMjM6ZW5jbG9zZXMgP2RzIC4KICAgID9wcyBzMjIzOmVuY2xvc2VzID9hbnlkcyAuCiAgICA/YW55ZHMgczIyMzpoYXNEb21haW4gczIyMzpEb21haW4tSFZBQyAuCiAgICB9CiAgICBHUk9VUCBCWSA/cHMKICAgIH0KICAgIEZJTFRFUiAoP2NvdW50ID0gMSkgLgogICAgP3NlbnNvciBzMjIzOmhhc01lYXN1cmVtZW50TG9jYXRpb24vXnMyMjM6ZW5jbG9zZXMgP3BzIC4KICAgID9zZW5zb3IgYSBzMjIzOk9jY3VwYW5jeVNlbnNvciAuCn0='><a href="javascript: void(0);">What occupancy sensors are available in a particular zone?</a></option>
+                
+                    <option value='UFJFRklYIHMyMjM6IDxodHRwOi8vZGF0YS5hc2hyYWUub3JnL3N0YW5kYXJkMjIzIz4KU0VMRUNUIChDT1VOVCAoRElTVElOQ1QgP3Jvb20pIEFTID9jb3VudCkKV0hFUkUgewo/b3NlbnNvciBhIHMyMjM6T2NjdXBhbmN5U2Vuc29yIC4KP29zZW5zb3IgczIyMzpvYnNlcnZlc1Byb3BlcnR5L3MyMjM6aGFzVmFsdWUgczIyMzpPY2N1cGFuY3lTdGF0dXMtVW5vY2N1cGllZCAuCj9vc2Vuc29yIHMyMjM6aGFzTWVhc3VyZW1lbnRMb2NhdGlvbi9eczIyMzplbmNsb3NlcyA/cm9vbSAuCj9yb29tIGEgczIyMzpQaHlzaWNhbFNwYWNlIC4KfQ=='><a href="javascript: void(0);">How many of the rooms are unoccupied?</a></option>
+                
+                    <option value='U0VMRUNUIERJU1RJTkNUICA/ZXF1IFdIRVJFIHsKICAgID9lcXUgYS9yZGZzOnN1YkNsYXNzT2YqIHMyMjM6U3lzdGVtIC4KICAgID9lcXUgczIyMzpzZXJ2ZXNab25lL3MyMjM6Y29udGFpbnMqID9kcyAuCiAgICA/ZHMgYSBzMjIzOkRvbWFpblNwYWNlIC4KICAgID9yb29tIHMyMjM6ZW5jbG9zZXMgP2RzIC4KICAgID9kcyBzMjIzOmhhc0RvbWFpbiBzMjIzOkRvbWFpbi1IVkFDIC4KfQ=='><a href="javascript: void(0);">What equipment is serving a particular room?</a></option>
+                
+                    <option value='U0VMRUNUICogV0hFUkUgewo/c3RhcnQgYS9yZGZzOnN1YkNsYXNzT2YqIHMyMjM6RGV2aWNlIC4KP3N0YXJ0IHMyMjM6Y29ubmVjdGVkVG8gP2RzIC4KP2RzIGEgczIyMzpEb21haW5TcGFjZSAuCj9kcyBzMjIzOmhhc0RvbWFpbiBzMjIzOkRvbWFpbi1IVkFDIC4KP3N0YXJ0IHMyMjM6Y29ubmVjdGVkVG8rID90aGluZyAuCkZJTFRFUiAoP3N0YXJ0ID0gP3RoaW5nKSAuCn0='><a href="javascript: void(0);">Does the supply air contain recirculated air?</a></option>
                 
                 </select>
             </div>

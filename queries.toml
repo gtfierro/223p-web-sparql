@@ -34,3 +34,74 @@ query="""SELECT DISTINCT ?zone ?system ?device WHERE {
             s223:servesZone ?zone .
     ?device rdf:type/rdfs:subClassOf* s223:Device .
 }"""
+
+[[query]]
+name="How many lights are on?"
+description="find devices that serve zones"
+query="""SELECT (COUNT (?d) AS ?count)
+WHERE{
+    ?d a s223:Luminaire .
+    ?d s223:hasProperty ?prop .
+    ?prop s223:hasAspect s223:EnumerationKind-RunStatus .
+    ?prop s223:hasValue s223:RunStatus-On .
+}"""
+
+[[query]]
+name="What are all the temperature sensors?"
+query="""SELECT ?sensor
+WHERE {
+?sensor a s223:TemperatureSensor .
+}"""
+
+[[query]]
+name="What occupancy sensors are available in a particular zone?"
+query="""PREFIX psm: <http://data.ashrae.org/standard223/1.0/data/pd-sr-mp-pritoni#>
+    PREFIX s223: <http://data.ashrae.org/standard223#>
+    SELECT ?sensor ?ps
+    WHERE {
+    {SELECT ?ps (COUNT (?anyds) AS ?count)
+    WHERE {
+    BIND (psm:HVACZone1 AS ?zone) .
+    ?zone s223:contains ?ds .
+    ?ps s223:encloses ?ds .
+    ?ps s223:encloses ?anyds .
+    ?anyds s223:hasDomain s223:Domain-HVAC .
+    }
+    GROUP BY ?ps
+    }
+    FILTER (?count = 1) .
+    ?sensor s223:hasMeasurementLocation/^s223:encloses ?ps .
+    ?sensor a s223:OccupancySensor .
+}"""
+
+[[query]]
+name="How many of the rooms are unoccupied?"
+query="""PREFIX s223: <http://data.ashrae.org/standard223#>
+SELECT (COUNT (DISTINCT ?room) AS ?count)
+WHERE {
+?osensor a s223:OccupancySensor .
+?osensor s223:observesProperty/s223:hasValue s223:OccupancyStatus-Unoccupied .
+?osensor s223:hasMeasurementLocation/^s223:encloses ?room .
+?room a s223:PhysicalSpace .
+}"""
+
+[[query]]
+name="What equipment is serving a particular room?"
+query="""SELECT DISTINCT  ?equ WHERE {
+    ?equ a/rdfs:subClassOf* s223:System .
+    ?equ s223:servesZone/s223:contains* ?ds .
+    ?ds a s223:DomainSpace .
+    ?room s223:encloses ?ds .
+    ?ds s223:hasDomain s223:Domain-HVAC .
+}"""
+
+[[query]]
+name="Does the supply air contain recirculated air?"
+query="""SELECT * WHERE {
+?start a/rdfs:subClassOf* s223:Device .
+?start s223:connectedTo ?ds .
+?ds a s223:DomainSpace .
+?ds s223:hasDomain s223:Domain-HVAC .
+?start s223:connectedTo+ ?thing .
+FILTER (?start = ?thing) .
+}"""

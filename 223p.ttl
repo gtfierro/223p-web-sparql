@@ -43810,10 +43810,6 @@ s223:Concept a s223:Class,
     rdfs:label "Root concept for standard 223" ;
     rdfs:comment "This is the superclass of all classes defined in the 223 standard." ;
     rdfs:subClassOf rdfs:Resource ;
-    sh:not [ a sh:PropertyShape ;
-            sh:hasValue true ;
-            sh:message "You cannot have an instance of an abstract class" ;
-            sh:path ( rdf:type s223:abstract ) ] ;
     sh:property [ sh:path s223:cnx ],
         [ sh:path s223:hasProperty ],
         [ sh:path rdfs:label ] .
