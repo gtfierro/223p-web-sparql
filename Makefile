@@ -7,7 +7,7 @@ update-223pstandard:
 	./tools/ontoenv-init-or-refresh.sh
 
 223p.ttl: 223standard
-	python tools/compile.py -o 223p.ttl 223standard/collections/MODEL_SP223_all-v1.0.ttl
+	python tools/compile.py -o 223p.ttl -i 223standard/collections/MODEL_SP223_all-v1.0.ttl
 
 gather-files:
 	./tools/gather-files.sh
